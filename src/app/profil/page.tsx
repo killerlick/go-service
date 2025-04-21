@@ -25,8 +25,10 @@ export default async function Profil() {
         redirect("/login");
       }
 
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-    const res = await fetch("http://localhost:3000/api/user", {
+
+    const res = await fetch(`${baseUrl}/api/user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId }),
