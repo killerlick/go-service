@@ -13,7 +13,9 @@ if (!cached) {
 }
 
 async function connectDB() {
+  console.log("connect  ")
   if (cached.conn) {
+    console.log("connect  cached")
     return cached.conn;
   }
 
@@ -21,12 +23,14 @@ async function connectDB() {
     const opts = {
       bufferCommands: false,
     };
-
+    console.log("connect  cached compromise")
     cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
       return mongoose;
     });
   }
+  console.log("connect  2")
   cached.conn = await cached.promise;
+  console.log("connect  3")
   return cached.conn;
 }
 

@@ -7,9 +7,8 @@ import fs from "fs";
 
 export async function GET(request: Request) {
   console.log(" [GET] /api/posts called");
-  console.log(" [GET] /api/posts called 2");
   await connectDB();
-  console.log(" [GET] /api/posts called 3");
+  console.log(" [GET] /api/posts called 2");
 
   try {
 
