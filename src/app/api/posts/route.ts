@@ -6,6 +6,8 @@ import path from "path";
 import fs from "fs";
 
 export async function GET(request: Request) {
+  console.log(" [GET] /api/posts called");
+
   await connectDB();
 
   try {
@@ -21,7 +23,10 @@ export async function GET(request: Request) {
       return NextResponse.json(post);
     }
 
+    console.time("GET /api/posts");
     const posts = await Post.find().sort({_id : -1}).limit(15).lean();
+    console.timeEnd("GET /api/posts");
+
     return NextResponse.json(posts);
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });
@@ -43,10 +48,10 @@ export async function POST(request: Request) {
     const filepath = path.join(process.cwd(), "public", "upload", filename);
 
     // 🔽 S'assurer que le dossier existe
-    fs.mkdirSync(path.dirname(filepath), { recursive: true });
-
-    // 🔽 Sauvegarder le fichier sur le disque
-    fs.writeFileSync(filepath, buffer);
+    if (process.env.VERCEL !== "1") {
+      fs.mkdirSync(path.dirname(filepath), { recursive: true });
+      fs.writeFileSync(filepath, buffer);
+    }
 
     // 🔽 Créer le post avec le chemin d'accès à l'image enregistrée
     const newPost = new Post({
