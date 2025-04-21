@@ -6,9 +6,11 @@ import path from "path";
 import fs from "fs";
 
 export async function GET(request: Request) {
-  console.log(" [GET] /api/posts called");
+  console.time(" [GET] /api/posts called");
 
   await connectDB();
+
+  console.timeEnd(" 2[GET] /api/posts called")
 
   try {
 
