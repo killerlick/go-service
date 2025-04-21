@@ -1,7 +1,6 @@
 
 import Service from "@/components/Service";
 import { Post } from "@/types/Post"
-import { exit } from "process";
 
 
 

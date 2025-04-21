@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import Image from "next/image";
 
 export default async function Header() {
 
@@ -12,10 +13,10 @@ export default async function Header() {
   let isAuthenticated = false;
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+      jwt.verify(token, process.env.JWT_SECRET!);
       isAuthenticated = true;
     } catch (err) {
-      console.log("Token invalide ou expiré");
+      console.log("Token invalide ou expiré" + err);
     }
   }
 
@@ -40,7 +41,7 @@ export default async function Header() {
               placeholder="Rechercher..."
               className="w-full bg-white p-2 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             /><button type="submit" className="ml-2 p-2 bg-blue-500 rounded-xl hover:bg-blue-600">
-              <img src="/search-icon.svg" className=" w-6 h-6"></img>
+              <Image src="/search-icon.svg" className=" w-6 h-6" width={6} height={6} alt={"search icon"}></Image>
             </button>
           </form>
 

@@ -4,17 +4,15 @@ import { Post } from "@/types/Post";
 import Service from "@/components/Service";
 
 type SearchPageProps = {
-  searchParams: { 
+  searchParams: Promise<{ 
     query?: string;
-    maxPrice?:string;
-    minPrice?:string
-   };
+    maxPrice?: string;
+    minPrice?: string;
+  }>;
 };
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.query?.toLowerCase() || "";
-  const maxPrice = searchParams.maxPrice?.toLowerCase() || "";
-  const minPrice = searchParams.minPrice?.toLowerCase() || "";
+  const {query = "" , maxPrice = "" , minPrice=""} = await searchParams
 
   const res = await fetch("http://localhost:3000/api/search?query="+query+"&minPrice=" +minPrice+"&maxPrice="+maxPrice, { cache: "no-store" });
   const posts: Post[] = await res.json();
@@ -58,7 +56,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
         <div className="flex flex-col items-center m-3">
           <h2 className="text-2xl font-bold mb-4">
-            Résultats pour : "{query}"
+            Résultats pour : &quot;{query}&quot;
           </h2>
           {postsList.length > 0 ? (postsList) : (
             <p>Aucun résultat trouvé.</p>

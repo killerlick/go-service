@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
-import path from "path";
-import fs from "fs";
-import { error } from "console";
 import User from "@/models/User";
 
 export async function POST(request: Request) {
@@ -11,7 +8,7 @@ export async function POST(request: Request) {
 
     try {
         const id = await request.json();
-        let user= await User.findById(id.UserId)
+        const user= await User.findById(id.UserId)
 
 
 

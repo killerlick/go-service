@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     const posts = await Post.find().sort({_id : -1});
     return NextResponse.json(posts);
   } catch (error) {
-    return NextResponse.json({ error: "Unable to fetch posts" }, { status: 500 });
+    return NextResponse.json({ message: error }, { status: 500 });
   }
 }
 

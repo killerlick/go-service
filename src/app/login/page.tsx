@@ -1,9 +1,5 @@
 "use client"
 
-import Service from "@/components/Service";
-import { Post } from "@/types/Post"
-import { exit } from "process";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -25,7 +21,6 @@ export default function Home() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
         });
-        const data = await res.json()
 
         if (res.ok) {
             alert("connection");

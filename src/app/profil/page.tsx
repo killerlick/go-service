@@ -1,5 +1,5 @@
 import { cookies } from "next/headers"
-import jwt from "jsonwebtoken";
+import jwt , {JwtPayload} from "jsonwebtoken";
 import { redirect } from "next/navigation";
 import { LogoutButton } from "@/components/Logout_button";
 
@@ -16,14 +16,20 @@ export default async function Profil() {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET!)
 
+    let userId: string;
 
-    const UserId = decoded.userId
+    if (typeof decoded === "object" && decoded !== null && "userId" in decoded) {
+        userId = (decoded as JwtPayload).userId as string;
+      } else {
+        console.log("Token invalide ou mal formé.");
+        redirect("/login");
+      }
 
 
     const res = await fetch("http://localhost:3000/api/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UserId }),
+        body: JSON.stringify({ userId }),
     });
 
     const user = await res.json()

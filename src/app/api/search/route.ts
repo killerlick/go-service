@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
 import Post from "@/models/Post";
-import path from "path";
-import fs from "fs";
-import { error } from "console";
+
 
 export async function GET(request: Request) {
 
