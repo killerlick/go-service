@@ -21,7 +21,7 @@ export async function GET(request: Request) {
       return NextResponse.json(post);
     }
 
-    const posts = await Post.find().sort({_id : -1});
+    const posts = await Post.find().sort({_id : -1}).limit(15).lean();
     return NextResponse.json(posts);
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });
