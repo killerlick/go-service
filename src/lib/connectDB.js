@@ -13,6 +13,13 @@ if (!cached) {
 }
 
 async function connectDB() {
+
+  console.log("Connected to MongoDB:");
+console.log("  - Database:", mongoose.connection.name);
+console.log("  - Host:", mongoose.connection.host);
+console.log("  - Port:", mongoose.connection.port);
+console.log("  - User:", mongoose.connection.user);
+
   console.log("connect  ")
   if (cached.conn) {
     console.log("connect  cached")
