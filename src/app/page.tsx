@@ -7,13 +7,13 @@ import { Post } from "@/types/Post"
 export default async function Home() {
 
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:2000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ;
 
   const res = await fetch(`${baseUrl}/api/posts`, { cache: "no-store" });
 
   const posts:Post[] = await res.json();
 
-
+  console.log(posts)
  
   const postsList = posts.map((post, index) =>(
     <Service
