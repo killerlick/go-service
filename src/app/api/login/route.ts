@@ -23,15 +23,18 @@ export async function POST(request: Request) {
         )
 
         if (!user) {
-            return NextResponse.json({ message: "email ou password incoreect" }, { status: 401 });
+            return NextResponse.json({ message: "email ou password incorrect" }, { status: 401 });
         }
 
         const isPasswordValid = await bcrypt.compare(password , user.password)
        
         if(!isPasswordValid){
-            return NextResponse.json({ message: "email ou password incoreect" }, { status: 401 });
+            return NextResponse.json({ message: "email ou password incorrect" }, { status: 401 });
         }
 
+            if(!user.isVerified){
+                return NextResponse.json({message : "user non verifié"} , {status:501})
+            }
 
         const token = jwt.sign(
             {userId : user._id , email: user.email},

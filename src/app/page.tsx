@@ -13,7 +13,6 @@ export default async function Home() {
 
   const posts:Post[] = await res.json();
 
-  console.log(posts)
  
   const postsList = posts.map((post, index) =>(
     <Service

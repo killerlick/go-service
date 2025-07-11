@@ -13,8 +13,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.2",
     "next": "15.2.4",
+    "nodemailer": "^6.10.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "resend": "^4.4.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

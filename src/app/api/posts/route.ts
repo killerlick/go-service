@@ -24,9 +24,7 @@ export async function GET(request: Request) {
       return NextResponse.json(post);
     }
 
-    console.log("GET /api/posts avant les données");
     const posts = await Post.find().sort({_id : -1}).limit(15).lean();
-    console.log(posts);
 
     return NextResponse.json(posts);
   } catch (error) {
