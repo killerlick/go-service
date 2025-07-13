@@ -54,12 +54,6 @@ export default async function Header() {
           </li>
 
 
-          <li>
-            <Link href="/about" className="hover:underline">
-              À propos
-            </Link>
-          </li>
-
           {
             isAuthenticated && (
               <li>
