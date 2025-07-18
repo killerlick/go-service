@@ -5,6 +5,11 @@ import Post from "@/models/Post";
 import path from "path";
 import fs from "fs";
 
+/**
+ * permet d'Avoir un post precis grace a son ID
+ * @param request l'id du post a regarder
+ * @returns 
+ */
 export async function GET(request: Request) {
   await connectDB();
 
@@ -32,12 +37,16 @@ export async function GET(request: Request) {
   }
 }
 
-
+/**
+ * permet de creer un post dans la base de données
+ * @param request les information pour la crceation de posts
+ * @returns 
+ */
 export async function POST(request: Request) {
   await connectDB();
 
   try {
-    const { title, description, image } = await request.json();
+    const {user_id, title, description, image } = await request.json();
 
     // 🔽 Convertir l'image base64 en fichier
     const buffer = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ""), "base64");
@@ -54,6 +63,7 @@ export async function POST(request: Request) {
 
     // 🔽 Créer le post avec le chemin d'accès à l'image enregistrée
     const newPost = new Post({
+      user_id,
       title,
       description,
       image: `/upload/${filename}`, // chemin relatif pour usage frontend

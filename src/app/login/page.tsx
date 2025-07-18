@@ -36,7 +36,20 @@ export default function Home() {
     };
 
     return (
+
+        
+
         <main className="flex flex-col flex-grow justify-center items-center min-h-screenm-3">
+<p>
+
+                biensur , cest pas un vrai vrai site , donc en theorie tu ne devrais pas pouvoir enregistrer un compte <br />
+                Tiens un compte utilisable <br />
+<br />
+                email : testUser@gmail.com
+<br />
+                mot de passe : 123ABCDEFGHI???
+
+</p>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-80">
 

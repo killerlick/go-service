@@ -4,6 +4,11 @@ import User from "@/models/User"
 import { NextResponse } from "next/server";
 import { sendVerificationEmail } from "@/lib/sendVerificatiionEmail";
 
+/**
+ * permet de verifier l'identité de quelquun grace au mail de confirmation envoyer
+ * @param request 
+ * @returns 
+ */
 export async function GET(request : Request){
 
     await connectDB()
@@ -40,6 +45,11 @@ export async function GET(request : Request){
 
 }
 
+/**
+ * permet d'enregistrer l'utilisateur dans la base de données 
+ * @param request 
+ * @returns 
+ */
 export async function POST(request: Request) {
 
     await connectDB()

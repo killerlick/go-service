@@ -2,13 +2,19 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
 import User from "@/models/User";
 
+/**
+ * permet d'Avoir les information d'un user A PARTIR DE SON ID
+ * @param request userID
+ * @returns 
+ */
 export async function POST(request: Request) {
 
     await connectDB();
 
     try {
         const id = await request.json();
-        const user= await User.findById(id.UserId)
+        
+        const user= await User.findById(id.userId)
 
 
 
