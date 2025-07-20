@@ -2,8 +2,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
 import Post from "@/models/Post";
-import path from "path";
-import fs from "fs";
+
 
 /**
  * permet d'Avoir un post precis grace a son ID
@@ -48,25 +47,14 @@ export async function POST(request: Request) {
   try {
     const {user_id, title, description, image } = await request.json();
 
-    // 🔽 Convertir l'image base64 en fichier
-    const buffer = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ""), "base64");
 
-    // 🔽 Créer un nom de fichier unique
-    const filename = `${Date.now()}.png`; // ou détecte l'extension dynamiquement si tu veux
-    const filepath = path.join(process.cwd(), "public", "upload", filename);
-
-    // 🔽 S'assurer que le dossier existe
-    if (process.env.VERCEL !== "1") {
-      fs.mkdirSync(path.dirname(filepath), { recursive: true });
-      fs.writeFileSync(filepath, buffer);
-    }
 
     // 🔽 Créer le post avec le chemin d'accès à l'image enregistrée
     const newPost = new Post({
       user_id,
       title,
       description,
-      image: `/upload/${filename}`, // chemin relatif pour usage frontend
+      image, // chemin relatif pour usage frontend
     });
 
     await newPost.save();

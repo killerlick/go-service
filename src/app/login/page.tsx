@@ -23,9 +23,10 @@ export default function Home() {
         });
 
         if (res.ok) {
-            alert("connection");
-            setEmail("");
-            setPassword("");
+            
+            //alert("connection");
+            //setEmail("");
+            //setPassword("");
             router.push("/");
             router.refresh();
 
@@ -45,7 +46,7 @@ export default function Home() {
                 biensur , cest pas un vrai vrai site , donc en theorie tu ne devrais pas pouvoir enregistrer un compte <br />
                 Tiens un compte utilisable <br />
 <br />
-                email : testUser@gmail.com
+                email : testUser20@gmail.com
 <br />
                 mot de passe : 123ABCDEFGHI???
 

@@ -81,13 +81,13 @@ export default function Home() {
     const data = await res.json();
 
     if (res.ok) {
-      alert("Inscription réussie !");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      setPhone("");
-      setErrors({ firstName: "", lastName: "", email: "", password: "", phone: "" });
+      //alert("Inscription réussie !");
+      //setFirstName("");
+      //setLastName("");
+      //setEmail("");
+      //setPassword("");
+      //setPhone("");
+      //setErrors({ firstName: "", lastName: "", email: "", password: "", phone: "" });
       router.push("/");
       router.refresh();
     } else {
