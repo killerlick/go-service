@@ -12,9 +12,12 @@ export default function Home() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isValidUser, setIsValidUser] = useState(true)
+    const [isLoading, setIsLoading ] = useState(false)
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsLoading(true)
 
         const res = await fetch("/api/login", {
             method: "POST",
@@ -32,6 +35,7 @@ export default function Home() {
 
         } else {
             setIsValidUser(false)
+            setIsLoading(false)
         }
 
     };
@@ -80,8 +84,14 @@ export default function Home() {
 
                 <button type="submit"
                     className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-600"
-                >login</button>
+                    disabled={isLoading}
+                >
+                                        {isLoading ? "Connexion en cours..." : "Login"}
+
+                </button>
             </form>
+
+
 
             <div className=" flex flex-col justify-center items-center  m-5">
                 <p>pas de compte ? inscris-vous</p>

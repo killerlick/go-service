@@ -12,9 +12,6 @@ import Post from "@/models/Post";
 export async function GET(request: Request) {
   await connectDB();
 
-  
-
-
   try {
 
     const url = new URL(request.url);
