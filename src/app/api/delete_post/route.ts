@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
 import Post from "@/models/Post";
+import User from "@/models/User";
 
 /**
  * permet de supprimer un post
@@ -17,6 +18,16 @@ export async function POST(request: Request) {
     const result = await Post.deleteOne(
         {_id : id}
     )
+
+    const user_trouver = User.findById(user_id)
+
+    if(!user_trouver){
+          return NextResponse.json({ error: "user_introuvable" }, { status: 500 });
+
+    }
+
+
+    
 
 
     return NextResponse.json(result);

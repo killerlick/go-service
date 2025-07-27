@@ -14,7 +14,6 @@ export default async function Page({ searchParams }: SearchPageProps) {
 
   const id = await searchParams;
   let userId: string | null = null;
-  let user
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const res = await fetch(`${baseUrl}/api/posts/?id=` + id.id, { cache: "no-store" })
@@ -45,7 +44,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
       body: JSON.stringify({ userId : post.user_id })
     }
     )
-    user = await res2.json()
+    const user = await res2.json()
   
 
   console.log(post)
