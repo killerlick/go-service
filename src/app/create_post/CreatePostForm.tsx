@@ -1,11 +1,23 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { GoogleMap, LoadScript, Autocomplete, Marker } from "@react-google-maps/api";
+
 
 interface Props {
     userId: string;
 }
+
+const mapContainerStyle = {
+    width: "100%",
+    height: "250px"
+};
+
+const defaultCenter = {
+    lat: 45.5017,
+    lng: -73.5673
+};
 
 export default function CreatePostForm({ userId }: Props) {
     const [title, setTitle] = useState("");
@@ -15,7 +27,26 @@ export default function CreatePostForm({ userId }: Props) {
     const [titleCheck, setTitleCheck] = useState(false);
     const [descriptionCheck, setDescriptionCheck] = useState(false);
 
+
+    const [address, setAddress] = useState("");
+    const [marker, setMarker] = useState(defaultCenter);
+    const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+
     const router = useRouter()
+
+    const handlePlaceChanged = () => {
+        const place = autocompleteRef.current?.getPlace() as google.maps.places.PlaceResult;
+
+        if (place && place.geometry && place.geometry.location) {
+            setAddress(place.formatted_address || ""); // fallback si null
+            setMarker({
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            });
+        }
+    };
+
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,14 +54,17 @@ export default function CreatePostForm({ userId }: Props) {
         const res = await fetch("/api/posts", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ user_id: userId, title, description, image }),
+            body: JSON.stringify({
+                user_id: userId,
+                title,
+                description,
+                image,
+                address,
+                location: marker
+            }),
         });
 
         if (res.ok) {
-            //alert("Post créé !");
-            //setTitle("");
-            //setDescription("");
-            //setImage("");
             router.push("/");
             router.refresh();
         } else {
@@ -38,7 +72,7 @@ export default function CreatePostForm({ userId }: Props) {
         }
     };
 
-    const handleImageChange = async  (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
@@ -52,7 +86,6 @@ export default function CreatePostForm({ userId }: Props) {
 
         if (res.ok) {
             const data = await res.json();
-            console.log(data.url)
             setImage(data.url); // On stocke l'URL renvoyée par l'API
         } else {
             alert("Erreur lors de l'upload de l'image.");
@@ -104,6 +137,43 @@ export default function CreatePostForm({ userId }: Props) {
                             className="border p-2 rounded hover:bg-gray-300"
                         />
                     </div>
+
+                    {/* Adresse avec autocomplétion */}
+                    <LoadScript
+                        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
+                        libraries={["places"]}
+                    >
+                        <Autocomplete
+                            onLoad={(ref) => (autocompleteRef.current = ref)}
+                            onPlaceChanged={handlePlaceChanged}
+                        >
+                            <input
+                                type="text"
+                                placeholder="Adresse du lieu"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                className="border p-2 rounded w-full"
+                            />
+                        </Autocomplete>
+
+                        {/* Carte avec marqueur */}
+                        <GoogleMap
+                            mapContainerStyle={mapContainerStyle}
+                            center={marker}
+                            zoom={14}
+                        >
+                            <Marker
+                                position={marker}
+                                draggable
+                                onDragEnd={(e) =>
+                                    setMarker({
+                                        lat: e.latLng!.lat(),
+                                        lng: e.latLng!.lng()
+                                    })
+                                }
+                            />
+                        </GoogleMap>
+                    </LoadScript>
 
                     <button
                         type="submit"
