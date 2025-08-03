@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     const post = await Post.findById(id)
 
-    post.titre =titre
+    post.title =titre
     post.description = description
 
     await post.save()

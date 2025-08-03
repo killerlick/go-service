@@ -3,12 +3,13 @@ import ModifyPostButton from "@/components/ModifyPostButton";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import Image from "next/image";
-
-
+import Map from "./Map";
 
 interface SearchPageProps {
   searchParams: Promise<{ id?: string }>;
 }
+
+
 
 export default async function Page({ searchParams }: SearchPageProps) {
 
@@ -38,21 +39,30 @@ export default async function Page({ searchParams }: SearchPageProps) {
   }
 
 
-    const res2 = await fetch(`${baseUrl}/api/user`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId : post.user_id })
-    }
-    )
-    const user = await res2.json()
-  
+  const res2 = await fetch(`${baseUrl}/api/user`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId: post.user_id })
+  }
+  )
+  const user = await res2.json()
+
 
   console.log(post)
 
+  const createdDate = new Date(post.createdAt);
+
+  const formattedDate = createdDate.toLocaleDateString("fr-FR",{
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+
+  console.log(formattedDate)
 
 
   return (
-    <div className="flex flex-col m-6">
+    <div className="flex flex-grow flex-col m-6">
       <div className="flex flex-row justify-center">
         <div className="relative flex flex-col items-center text-center m-2 mx-8 p-4 rounded border bg-gray-50 w-full">
 
@@ -68,38 +78,46 @@ export default async function Page({ searchParams }: SearchPageProps) {
           <p className=" mt-4 mb-6">{post.description}</p>
 
           <span className="absolute bottom-2 right-4 text-sm text-gray-500 m-1">
-            cree le
+            cree le {formattedDate}
           </span>
 
         </div>
 
-        <div className="flex flex-col m-2 p-4 rounded border bg-gray-100 w-1/3 h-fit ml-6 mr-20 " >
-          <ul >
-            <p className="font-bold">info Utilisateur</p>
-            <li>{user.firstName} {user.lastName}</li>
-            <li></li>
-          </ul>
+        <div className="flex flex-col w-1/3">
+          <div className="flex flex-col m-2 p-4 rounded border bg-gray-100 w-full h-fit   " >
+            <ul >
+              <p className="font-bold">info Utilisateur</p>
+              <li>{user.firstName} {user.lastName}</li>
+              <li></li>
+            </ul>
+          </div>
 
+          <div className="flex flex-col m-2 p-4 rounded border bg-gray-100 w-full h-fit  " >
+            
+    <Map location={post.location}>
+    </Map>
 
+          </div>
         </div>
-
       </div>
 
       <div className="text-center">
+
         {userId !== null &&
           (userId == post.user_id) &&
-          ( <DeletePostButton
+          (<DeletePostButton
             post_id={id.id as string}
             userId={userId}
-          ></DeletePostButton>)} 
-          {userId !== null &&
-          (userId == post.user_id) &&(
-        <ModifyPostButton 
-        id={id.id as string} 
-        titre={post.title} 
-        description={post.description}>
-        </ModifyPostButton>)
-        
+          ></DeletePostButton>)}
+
+        {userId !== null &&
+          (userId == post.user_id) && (
+            <ModifyPostButton
+              id={id.id as string}
+              titre={post.title}
+              description={post.description}>
+            </ModifyPostButton>)
+
 
         }
       </div>

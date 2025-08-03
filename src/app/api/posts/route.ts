@@ -42,7 +42,8 @@ export async function POST(request: Request) {
   await connectDB();
 
   try {
-    const {user_id, title, description, image } = await request.json();
+    const {user_id, title, description, image,address , location } = await request.json();
+
 
 
 
@@ -52,7 +53,14 @@ export async function POST(request: Request) {
       title,
       description,
       image, // chemin relatif pour usage frontend
+      address,
+      location:{
+          lat:location.lat,
+          lng:location.lng
+      }
     });
+
+    console.log(newPost)
 
     await newPost.save();
 
