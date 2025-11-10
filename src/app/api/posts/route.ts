@@ -16,6 +16,8 @@ export async function GET(request: Request) {
 
     const url = new URL(request.url);
     const id = url.searchParams.get("id");
+    const limit = Number(url.searchParams.get("limit")) || 5;
+    const page = Number(url.searchParams.get("page")) || 1;
 
     if (id) {
       const post = await Post.findById(id);
@@ -25,9 +27,27 @@ export async function GET(request: Request) {
       return NextResponse.json(post);
     }
 
-    const posts = await Post.find().sort({_id : -1}).limit(15).lean();
+    const skip = (page - 1) * limit;
 
-    return NextResponse.json(posts);
+    const posts = await Post.find().
+      sort({ _id: -1 }).
+      skip(skip).
+      limit(limit).
+      lean();
+
+      const total  = await Post.countDocuments();
+
+      return NextResponse.json({
+        posts,
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      });
+
+
+  
+
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });
   }

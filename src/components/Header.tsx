@@ -30,9 +30,6 @@ export default async function Header() {
 
         <div className="flex-grow max-w-md mx-10">
 
-          <label htmlFor="search" className="sr-only">
-            Rechercher
-          </label>
           <form method="GET" action="/search" className="flex flex-row">
             <input
               id="search"
@@ -46,6 +43,7 @@ export default async function Header() {
           </form>
 
         </div>
+        
         <ul className="flex gap-4">
           <li>
             <Link href="/" className="hover:underline">
