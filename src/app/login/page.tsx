@@ -12,7 +12,7 @@ export default function Home() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isValidUser, setIsValidUser] = useState(true)
-    const [isLoading, setIsLoading ] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -26,7 +26,7 @@ export default function Home() {
         });
 
         if (res.ok) {
-            
+
             //alert("connection");
             //setEmail("");
             //setPassword("");
@@ -42,19 +42,19 @@ export default function Home() {
 
     return (
 
-        
 
-        <main className="flex flex-col flex-grow justify-center items-center min-h-screenm-3">
-<p>
+
+        <div className="flex flex-col flex-grow justify-center items-center min-h-screenm-3">
+            <p>
 
                 biensur , cest pas un vrai vrai site , donc en theorie tu ne devrais pas pouvoir enregistrer un compte <br />
                 Tiens un compte utilisable <br />
-<br />
+                <br />
                 email : testUser20@gmail.com
-<br />
+                <br />
                 mot de passe : 123ABCDEFGHI???
 
-</p>
+            </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-80">
 
@@ -86,7 +86,7 @@ export default function Home() {
                     className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-600"
                     disabled={isLoading}
                 >
-                                        {isLoading ? "Connexion en cours..." : "Login"}
+                    {isLoading ? "Connexion en cours..." : "Login"}
 
                 </button>
             </form>
@@ -96,16 +96,16 @@ export default function Home() {
             <div className=" flex flex-col justify-center items-center  m-5">
                 <p>pas de compte ? inscris-vous</p>
                 <Link href="/register" className="w-full">
-                <button
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-600 w-full "
-                >
-                    inscription
-                </button>
+                    <button
+                        className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-600 w-full "
+                    >
+                        inscription
+                    </button>
 
                 </Link>
             </div>
 
-        </main>
+        </div>
     );
 }
 

@@ -95,7 +95,7 @@ export default function CreatePostForm({ userId }: Props) {
     const isFormValid = title.trim().length >= 3 && description.trim().length >= 10;
 
     return (
-        <main className="flex-grow m-3">
+        <div className="flex-grow m-3">
             <div className="flex flex-col text-center m-3">
                 <h5 className="text-2xl font-bold m-3">Création de Post</h5>
 
@@ -184,6 +184,6 @@ export default function CreatePostForm({ userId }: Props) {
                     </button>
                 </form>
             </div>
-        </main>
+        </div>
     );
 }

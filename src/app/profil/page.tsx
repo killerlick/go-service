@@ -59,7 +59,7 @@ export default async function Profil() {
     ));
 
     return (
-        <main className="flex flex-grow p-6">
+        <div className="flex flex-grow p-6">
             <div className="flex-grow">
                 <div className="flex flex-row ">
 
@@ -85,7 +85,7 @@ export default async function Profil() {
 
 
 
-        </main>
+        </div>
 
     )
 

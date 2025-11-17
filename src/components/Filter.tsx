@@ -1,7 +1,6 @@
 // app/search/page.tsx
 
 import { Post } from "@/types/Post";
-import Service from "@/components/Service";
 
 type SearchPageProps = {
   searchParams: Promise<{ 
@@ -15,21 +14,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const {query = "" , maxPrice = "" , minPrice=""} = await searchParams
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ;
-
-
   const res = await fetch(`${baseUrl}/api/search?query=`+query+"&minPrice=" +minPrice+"&maxPrice="+maxPrice, { cache: "no-store" });
   const posts: Post[] = await res.json();
   console.log("posts = " + JSON.stringify(posts, null, 2))
-
-  const postsList = posts.map((post, index) => (
-    <Service
-      key={index}
-      id={post._id}
-      titre={post.title}
-      description={post.description}
-      image={post.image}
-    />
-  ));
 
   return (
     <div className="flex-grow m-3">
@@ -56,15 +43,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
 
         </form>
-
-        <div className="flex flex-col items-center m-3">
-          <h2 className="text-2xl font-bold mb-4">
-            Résultats pour : &quot;{query}&quot;
-          </h2>
-          {postsList.length > 0 ? (postsList) : (
-            <p>Aucun résultat trouvé.</p>
-          )}
-        </div>
       </div>
 
     </div>

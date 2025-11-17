@@ -21,7 +21,7 @@ export default async function Header() {
   }
 
   return (
-    <header className="bg-gray-800 text-white p-4">
+    <header className="bg-gray-800 text-white p-4 shadow-md shadow-black">
       <nav className="container mx-auto flex justify-between items-center">
         <Link href="/" >
           <h1 className="text-xl font-bold">GO-Service</h1>
@@ -48,6 +48,11 @@ export default async function Header() {
           <li>
             <Link href="/" className="hover:underline">
               Accueil
+            </Link>
+          </li>
+          <li>
+            <Link href="/MainFeed" className="hover:underline" >
+              Voir les offres
             </Link>
           </li>
 

@@ -96,7 +96,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col flex-grow justify-center items-center min-h-screen p-4">
+    <div className="flex flex-col flex-grow justify-center items-center min-h-screen p-4">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-80">
         <div className="flex flex-row w-full">
           <div className="w-full">
@@ -162,6 +162,6 @@ export default function Home() {
           Register
         </button>
       </form>
-    </main>
+    </div>
   );
 }
