@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -26,10 +27,10 @@ export default function Home() {
         */}
 
         <motion.div
-          initial={{ opacity: 0, y: -10 }} 
-          animate={{ opacity: 1, y: 0 }}   
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="relative w-full md:h-144  rounded-2xl  shadow-lg mb-6"
+          className="relative w-full  md:h-144  rounded-2xl  shadow-lg mb-6"
         >
           <Image
             src="/image/homePics/photoGens.avif"
@@ -38,7 +39,6 @@ export default function Home() {
             className="object-cover object-center "
           />
           <div className="absolute inset-0 bg-black/40"></div>
-          <div></div>
 
           <div className="relative p-8 md:p-12 text-white top-1/2">
             <h2 className="text-2xl md:text-5xl font-bold mb-4 text-center">BIENVENUE SUR GO SERVICE</h2>
@@ -49,57 +49,95 @@ export default function Home() {
             </p>
           </div>
         </motion.div>
-        <div>
-
-        </div>
-
 
         <motion.div
-          initial={{ opacity: 0, x: -70 }}
+          initial={{ opacity: 0, x: 70 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="p-6 mt-6 rounded-2xl bg-white shadow-md w-full md:w-1/2"
+          className="relative mt-6 bg-white shadow-md h-144 w-full overflow-hidden flex"
         >
-          <Image
-            src="/image/homePics/photoGens.avif"
-            alt="How it works"
-            width={600}
-            height={400}
-            className="w-full h-auto mb-4 rounded-lg"
-          >
-          </Image>
-          <h2 className="text-xl font-semibold mb-2">Comment ça fonctionne</h2>
-          <p className="text-gray-600">
-            Parcourez les services disponibles, filtrez selon vos besoins et trouvez instantanément un prestataire proche de chez vous.
-            Chaque annonce inclut une description claire, un tarif et une localisation afin de vous aider à prendre la meilleure décision.
-            Notre plateforme est pensée pour être rapide, intuitive et efficace.
-          </p>
+          <div className="relative flex-1 flex items-center justify-end pr-6">
+            <div className="max-w-[60%] text-right text-white z-10">
+              <h2 className="text-2xl md:text-5xl font-bold mb-4">
+                Comment ça fonctionne
+              </h2>
+              <p className="text-base md:text-2xl">
+                Parcourez les services disponibles, filtrez selon vos besoins et trouvez instantanément un prestataire proche de chez vous.
+                Chaque annonce inclut une description claire, un tarif et une localisation afin de vous aider à prendre la meilleure décision.
+                Notre plateforme est pensée pour être rapide, intuitive et efficace.
+              </p>
+              <Link href="MainFeed">
+                <button className="
+                    mt-4 px-5 py-2 
+                   bg-blue-600 text-white 
+                   rounded-lg 
+                  transition-all duration-200
+                 hover:bg-white hover:text-blue-600
+                    hover:shadow-lg
+                    ">
+                  voir les offres
+                </button>
+              </Link>
+
+            </div>
+
+          </div>
+          <div className="relative w-1/2 h-full">
+
+            <Image
+              src="/image/homePics/poigneeSerree.jpeg"
+              alt="How it works"
+              fill
+              className="object-cover object-center 
+              [mask-image:linear-gradient(to_left,transparent,black)]"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-white/10 pointer-events-none z-0"></div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: -70 }}
+                <motion.div
+          initial={{ opacity: 0, x: 70 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="p-6 mt-6 rounded-2xl bg-white shadow-md w-full md:w-1/2"
+          className="relative mt-6 bg-white shadow-md h-144 w-full overflow-hidden flex"
         >
-          <Image
-            src="/image/homePics/ramasseOrdure.jpg"
-            alt="How it works"
-            width={600}
-            height={400}
-            className="w-full h-auto mb-4 rounded-lg"
-
-          >
-
-
-          </Image>
-          <h2 className="text-xl font-semibold mb-2">Nos engagements</h2>
-          <p className="text-gray-600">
+          <div className="relative flex-1 flex items-center justify-end pr-6">
+            <div className="max-w-[60%] text-right text-white z-10">
+              <h2 className="text-2xl md:text-5xl font-bold mb-4">
+Nos engagements              </h2>
+              <p className="text-base md:text-2xl">
             Nous nous engageons à offrir une expérience sécurisée, transparente et professionnelle. GO-Service valorise la qualité, la fiabilité et le respect entre clients et prestataires.
             Notre objectif : rendre vos démarches plus simples et vous aider à trouver l’aide dont vous avez besoin, au moment où vous en avez besoin.
-          </p>
+              </p>
+              <Link href="MainFeed">
+                <button className="
+                    mt-4 px-5 py-2 
+                   bg-blue-600 text-white 
+                   rounded-lg 
+                  transition-all duration-200
+                 hover:bg-white hover:text-blue-600
+                    hover:shadow-lg
+                    ">
+s`&apos;`enregister                </button>
+              </Link>
+
+            </div>
+
+          </div>
+          <div className="relative w-1/2 h-full">
+
+            <Image
+              src="/image/homePics/ramasseOrdure.jpg"
+              alt="How it works"
+              fill
+              className="object-cover object-center 
+              [mask-image:linear-gradient(to_left,transparent,black)]"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-white/10 pointer-events-none z-0"></div>
         </motion.div>
 
+         
 
       </div>
     </div>
