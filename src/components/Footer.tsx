@@ -30,11 +30,10 @@ export default function Footer() {
 
             <div className='flex flex-row items-center justify-center gap-1.5'>
                 <Link href="/about" className="hover:underline">
-                               A propos
+                    A propos
                 </Link>
- 
-            </div>
 
+            </div>
         </footer>
     )
 }
