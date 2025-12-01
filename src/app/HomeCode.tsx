@@ -139,16 +139,16 @@ return(
         <div className="flex flex-col md:flex-row items-center w-full px-4 mt-10 pt-10 pb-40 bg-[#e5e5e5]">
           <div className="w-full md:w-1/2 text-right mb-8 md:mb-0">
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 mb-4">
-              ENVIE DE FAIRE PARTIE DE L&aposAVENTURE ?
+              ENVIE DE FAIRE PARTIE DE L&apos;AVENTURE ?
             </h3>
-            <p className="text-lg md:text-xl text-gray-700">
+            <p className="text-lg md:text-xl text-black-700">
               Connecte-toi et commence à aider — ou te faire aider — en un clic.
             </p>
           </div>
           <div className="w-px bg-black mx-4 self-stretch hidden md:block"></div>
           <div className="w-full md:w-1/2">
             <div className="flex flex-col text-center " >
-              <p>je sais que vous n&aposavez pas de compte voici de quoi vous connecter.</p>
+              <p>je sais que vous n&apos;avez pas de compte voici de quoi vous connecter.</p>
               <p>email : testUser20@gmail.com</p>
               <p>mot de passe : 123ABCDEFGHI???</p>
             </div>
