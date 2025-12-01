@@ -50,17 +50,17 @@ export default function Home() {
     if (!password.trim()) {
       newErrors.password = "Le mot de passe est requis.";
       hasError = true;
-    }else if (
-        password.length < 8 ||
-        !/[A-Z]/.test(password) ||
-        !/[0-9]/.test(password) ||
-        !/[!@#$%^&*]/.test(password)
-      ) {
-        newErrors.password =
-          "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.";
-        hasError = true;
-      }
-      
+    } else if (
+      password.length < 8 ||
+      !/[A-Z]/.test(password) ||
+      !/[0-9]/.test(password) ||
+      !/[!@#$%^&*]/.test(password)
+    ) {
+      newErrors.password =
+        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.";
+      hasError = true;
+    }
+
     if (!phone.trim()) {
       newErrors.phone = "Le numéro est requis.";
       hasError = true;
@@ -97,6 +97,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col flex-grow justify-center items-center min-h-screen p-4">
+      <h2 className="text-3xl font-semibold m-4" >INSCRIPTION</h2>
+
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-80">
         <div className="flex flex-row w-full">
           <div className="w-full">

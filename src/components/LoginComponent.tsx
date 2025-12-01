@@ -37,6 +37,8 @@ export default function LoginComponent() {
     return (
         <div className="flex flex-col flex-grow justify-center items-center min-h-screenm-3" >
 
+            
+
             <form onSubmit={handleLogin} className="flex flex-col gap-4 w-80">
 
                 {
@@ -52,7 +54,7 @@ export default function LoginComponent() {
                     placeholder="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`border p-2 rounded m-1 ${!isValidUser ? "border-red-500" : ""}`}
+                    className={`border p-2 rounded m-1 bg-white ${!isValidUser ? "border-red-500" : ""}`}
                 />
 
                 <input
@@ -60,7 +62,7 @@ export default function LoginComponent() {
                     placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`border p-2 rounded m-1 ${!isValidUser ? "border-red-500" : ""}`}
+                    className={`border p-2 rounded m-1 bg-white ${!isValidUser ? "border-red-500" : ""}`}
                 />
 
                 <button type="submit"

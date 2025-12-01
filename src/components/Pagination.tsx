@@ -13,7 +13,9 @@ export default function Pagination({
 
 
   const goToPage = (page: number) => {
-    router.push(`/?page=${page}`);
+    const url = new URL(window.location.href);
+    url.searchParams.set("page", page.toString());
+    router.push(url.toString());
   };
 
   return (
@@ -21,7 +23,7 @@ export default function Pagination({
       <button
         onClick={() => goToPage(currentPage - 1)}
         disabled={currentPage <= 1}
-        className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+        className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50 hover:bg-gray-400 hover:underline "
       >
         Précédent
       </button>
@@ -33,7 +35,7 @@ export default function Pagination({
       <button
         onClick={() => goToPage(currentPage + 1)}
         disabled={currentPage >= totalPages}
-        className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+        className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50 hover:bg-gray-400 hover:underline "
       >
         Suivant
       </button>

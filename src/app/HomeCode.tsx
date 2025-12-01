@@ -8,7 +8,6 @@ import LoginComponent from "@/components/LoginComponent";
 export default function HomeCode() {
 
 return(
-
     <div className="flex-grow">
       <div className="flex flex-col items-center">
         {/* <h1 className="text-2xl font-bold m-3 mb-15">BIENVENUE SUR GO SERVICE</h1>
@@ -16,7 +15,7 @@ return(
         <p className="text-lg text-gray-700 mb-6">
           GO-Service connecte les gens à des travailleurs locaux fiables, rapidement et chaleureux.
         </p> 
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4">🛠️ À propos de GO-Service</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">🛠️ À propos de GO-Service</h2>
             <p className="text-base md:text-lg">
               GO-Service est une plateforme conçue pour connecter rapidement les clients avec des prestataires fiables partout au Canada.
               Que ce soit pour un déménagement, un service de nettoyage, une réparation ou une aide ponctuelle, nous facilitons la mise en
@@ -24,7 +23,6 @@ return(
             </p>
         
         */}
-
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -77,9 +75,7 @@ return(
                   voir les offres
                 </button>
               </Link>
-
             </div>
-
           </div>
           <div className="relative w-1/2 h-full">
 
@@ -124,7 +120,7 @@ return(
 
           </div>
           <div className="relative w-1/2 h-full">
-
+          
             <Image
               src="/image/homePics/ramasseOrdure.jpg"
               alt="How it works"
@@ -148,22 +144,14 @@ return(
           <div className="w-px bg-black mx-4 self-stretch hidden md:block"></div>
           <div className="w-full md:w-1/2">
             <div className="flex flex-col text-center " >
-              <p>je sais que vous n&apos;avez pas de compte voici de quoi vous connecter.</p>
+              <p>Je sais que vous n&apos;avez pas de compte voici de quoi vous connecter.</p>
               <p>email : testUser20@gmail.com</p>
               <p>mot de passe : 123ABCDEFGHI???</p>
             </div>
             <LoginComponent />
           </div>
         </div>
-
-
       </div>
     </div>
-
 )
-
-
-
-
-
 }

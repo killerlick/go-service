@@ -1,7 +1,7 @@
 import Service from "@/components/Service";
 import Pagination from "@/components/Pagination";
 import { Post } from "@/types/Post";
-import Carousel from "@/components/Carousel";
+// import Carousel from "@/components/Carousel";
 
 interface MainFeedProps {
   searchParams: Promise<{ page?: string }>;
@@ -44,17 +44,17 @@ export default async function MainFeed(
     />
   ));
 
-  const carouselPosts = posts.slice(0, (posts.length > 3 ? 3 : posts.length)).map(post => ({
-    id: post._id!,
-    title: post.title,
-    image: post.image,
-  }));
+  // const carouselPosts = posts.slice(0, (posts.length > 3 ? 3 : posts.length)).map(post => ({
+  //   id: post._id!,
+  //   title: post.title,
+  //   image: post.image,
+  // }));
 
   return (
     <div className="flex-grow m-3">
       <div className="flex flex-col items-center m-3">
         <h5 className="text-2xl font-bold m-3 mb-15">BIENVENUE SUR GO SERVICE</h5>
-        <Carousel items={carouselPosts}></Carousel>
+        {/* <Carousel items={carouselPosts}></Carousel> */}
 
         {postsList.length > 0 ? (<>
         {postsList}
