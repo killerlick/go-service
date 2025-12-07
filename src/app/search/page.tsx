@@ -13,10 +13,7 @@ type SearchPageProps = {
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const {query = "" , maxPrice = "" , minPrice=""} = await searchParams
-
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ;
-
-
   const res = await fetch(`${baseUrl}/api/search?query=`+query+"&minPrice=" +minPrice+"&maxPrice="+maxPrice, { cache: "no-store" });
   const posts: Post[] = await res.json();
   console.log("posts = " + JSON.stringify(posts, null, 2))
