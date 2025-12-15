@@ -54,7 +54,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               <option value="Autre">Autre</option>
             </select>
           </div>
-
           <div className="mb-4">
             <label className="block font-medium mb-1">Zone</label>
             <select

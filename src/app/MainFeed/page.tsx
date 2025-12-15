@@ -3,6 +3,7 @@ import Pagination from "@/components/Pagination";
 import { Post } from "@/types/Post";
 import { data, p } from "framer-motion/client";
 import Filter from "@/components/Filter";
+import PublicationButton from "./PublicationButton";
 // import Carousel from "@/components/Carousel";
 
 interface MainFeedProps {
@@ -85,8 +86,11 @@ export default async function MainFeed(
 
         <div className="flex ">
 
-          <div>
+          <div className="flex flex-col gap-3">
             <Filter searchParams={searchParams}></Filter>
+
+           <PublicationButton />
+
           </div>
 
           {postsList.length > 0 ? (
