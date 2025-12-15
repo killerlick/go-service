@@ -15,9 +15,11 @@ export async function GET(request: Request) {
   try {
 
     const url = new URL(request.url);
+
     const id = url.searchParams.get("id");
     const limit = Number(url.searchParams.get("limit")) || 5;
     const page = Number(url.searchParams.get("page")) || 1;
+    const query = url.searchParams.get("query");
 
     if (id) {
       const post = await Post.findById(id);
@@ -29,24 +31,48 @@ export async function GET(request: Request) {
 
     const skip = (page - 1) * limit;
 
-    const posts = await Post.find().
+    let posts;
+
+    if (query) {
+      console.log("recherche de posts avec query: " + query);
+      posts = await Post.find({
+        $or: [
+          { title: { $regex: query, $options: "i" } },
+          { description: { $regex: query, $options: "i" } }
+        ]
+      }).
+      sort({ _id: -1 }).
+      skip(skip).
+      limit(limit).
+      lean();
+    } else {
+
+    posts = await Post.find().
       sort({ _id: -1 }).
       skip(skip).
       limit(limit).
       lean();
 
-      const total  = await Post.countDocuments();
-
-      return NextResponse.json({
-        posts,
-        total,
-        page,
-        limit,
-        totalPages: Math.ceil(total / limit),
-      });
+    }
 
 
-  
+    const total = query ? await Post.countDocuments({
+        $or: [
+          { title: { $regex: query, $options: "i" } },
+          { description: { $regex: query, $options: "i" } }
+        ]
+      }) : await Post.countDocuments();
+
+    return NextResponse.json({
+      posts,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    });
+
+
+
 
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });
@@ -62,7 +88,7 @@ export async function POST(request: Request) {
   await connectDB();
 
   try {
-    const {user_id, title, description, image,address , location } = await request.json();
+    const { user_id, title, description, image, address, location } = await request.json();
 
 
 
@@ -74,9 +100,9 @@ export async function POST(request: Request) {
       description,
       image, // chemin relatif pour usage frontend
       address,
-      location:{
-          lat:location.lat,
-          lng:location.lng
+      location: {
+        lat: location.lat,
+        lng: location.lng
       }
     });
 

@@ -8,7 +8,7 @@ export default async function Header() {
 
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
-//  console.log("token:          " + token)
+  //  console.log("token:          " + token)
 
   let isAuthenticated = false;
   if (token) {
@@ -30,20 +30,21 @@ export default async function Header() {
 
         <div className="flex-grow max-w-md mx-10">
 
-          <form method="GET" action="/search" className="flex flex-row">
+          <form method="GET" action="/MainFeed" className="flex flex-row">
             <input
               id="search"
               name="query"
               type="text"
               placeholder="Rechercher..."
               className="w-full bg-white p-2 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            /><button type="submit" className="ml-2 p-2 bg-blue-500 rounded-xl hover:bg-blue-600">
+            />
+            <button type="submit" className="ml-2 p-2 bg-blue-500 rounded-xl hover:bg-blue-600">
               <Image src="/search-icon.svg" className=" w-6 h-6" width={6} height={6} alt={"search icon"}></Image>
             </button>
           </form>
 
         </div>
-        
+
         <ul className="flex gap-4">
           <li>
             <Link href="/" className="hover:underline">
@@ -79,7 +80,7 @@ export default async function Header() {
             isAuthenticated && (
               <li>
                 <Link href="/profil" >
-                profil
+                  profil
                 </Link>
               </li>
             )
