@@ -46,7 +46,7 @@ export default async function MainFeed(
     console.error("Erreur inattendue lors du fetch ou du parsing JSON:", err);
   }
 
-  const postsList = posts.map((post, index) => (
+  const postsL ist = posts.map((post, index) => (
     <Service
       key={index}
       id={post._id}
@@ -79,7 +79,7 @@ export default async function MainFeed(
             </h2>
           )}
 
-é
+
         </div>
 
         {/* <Carousel items={carouselPosts}></Carousel> */}
