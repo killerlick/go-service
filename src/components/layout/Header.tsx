@@ -1,29 +1,25 @@
 // components/Header.tsx
 import Link from "next/link";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import MobileMenuHeader from "./MobileMenuHeader";
 import Image from "next/image";
+import verify_cookie from "@/lib/verify_cookie";
 
 export default async function Header() {
 
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
-  //  console.log("token:          " + token)
+
 
   let isAuthenticated = false;
-  if (token) {
-    try {
-      jwt.verify(token, process.env.JWT_SECRET!);
-      isAuthenticated = true;
-    } catch (err) {
-      console.log("Token invalide ou expiré" + err);
-    }
+  let result = await verify_cookie();
+  
+  if(result != null){
+    isAuthenticated = true;
   }
+
 
   return (
     <header className="bg-gray-800 text-white p-4 shadow-md shadow-black">
-      <nav className="container mx-auto flex justify-between items-center">
-        <Link href="/" >
+      <nav className="container mx-auto flex justify-between items-center md:flex">
+        <Link href="/" className="md:flex" >
           <h1 className="text-xl font-bold">GO-Service</h1>
         </Link>
 
@@ -38,14 +34,14 @@ export default async function Header() {
               placeholder="Rechercher..."
               className="w-full bg-white p-2 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button type="submit" className="ml-2 p-2 bg-blue-500 rounded-xl hover:bg-blue-600">
+            <button type="submit" className="hidden md:flex ml-2 p-2 bg-blue-500 rounded-xl hover:bg-blue-600">
               <Image src="/search-icon.svg" className=" w-6 h-6" width={6} height={6} alt={"search icon"}></Image>
             </button>
           </form>
 
         </div>
 
-        <ul className="flex gap-4">
+        <ul className="hidden md:flex gap-4">
           <li>
             <Link href="/" className="hover:underline">
               Accueil
@@ -87,6 +83,8 @@ export default async function Header() {
           }
 
         </ul>
+
+        <MobileMenuHeader isAuthenticated={isAuthenticated} />
       </nav>
     </header>
   );

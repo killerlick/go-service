@@ -1,8 +1,7 @@
-import Service from "@/components/Service";
-import Pagination from "@/components/Pagination";
+import Service from "@/components/ui/Service";
+import Pagination from "@/components/ui/Pagination";
 import { Post } from "@/types/Post";
-import { data, p } from "framer-motion/client";
-import Filter from "@/components/Filter";
+import Filter from "@/components/features/Filter";
 import PublicationButton from "./PublicationButton";
 // import Carousel from "@/components/Carousel";
 
@@ -86,7 +85,7 @@ export default async function MainFeed(
 
         <div className="flex ">
 
-          <div className="flex flex-col gap-3">
+          <div className="hidden md:flex flex-col gap-3">
             <Filter searchParams={searchParams}></Filter>
 
            <PublicationButton />

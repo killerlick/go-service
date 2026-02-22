@@ -1,5 +1,5 @@
-import DeletePostButton from "@/components/DeletePostButton";
-import ModifyPostButton from "@/components/ModifyPostButton";
+import DeletePostButton from "@/components/ui/DeletePostButton";
+import ModifyPostButton from "@/components/ui/ModifyPostButton";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import Image from "next/image";

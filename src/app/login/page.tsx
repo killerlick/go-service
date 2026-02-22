@@ -1,4 +1,4 @@
-import LoginComponent from "@/components/LoginComponent";
+import LoginComponent from "@/components/ui/LoginComponent";
 
 
 export default function Login() {

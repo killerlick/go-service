@@ -1,8 +1,8 @@
 import { cookies } from "next/headers"
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { redirect } from "next/navigation";
-import { LogoutButton } from "@/components/Logout_button";
-import Service from "@/components/Service";
+import { LogoutButton } from "@/components/ui/Logout_button";
+import Service from "@/components/ui/Service";
 import { Post } from "@/types/Post";
 
 
