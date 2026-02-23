@@ -186,7 +186,7 @@ export default function HomeCode() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="bg-white py-24 w-full "
+          className="bg-white dark:bg-gray-800 text-black dark:text-white py-24 w-full "
         >
           <div className="max-w-7xl mx-auto px-6">
 
@@ -202,7 +202,7 @@ export default function HomeCode() {
                 <h3 className="text-xl font-semibold mb-4">
                   Prestataires vérifiés
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Chaque prestataire est examiné afin de garantir fiabilité et professionnalisme.
                 </p>
               </div>
@@ -244,7 +244,7 @@ export default function HomeCode() {
 
         {/* SIGN IN SECTION */}
         <div className="flex flex-col md:flex-row items-center w-full px-4 mt-10 pt-10 pb-40 bg-[#e5e5e5]">
-          <div className="w-full text-center md:w-1/2 md:text-right mb-8 md:mb-0">
+          <div className="w-full text-center dark:text-gray-950  md:w-1/2 md:text-right mb-8 md:mb-0">
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 mb-4">
               ENVIE DE FAIRE PARTIE DE L&apos;AVENTURE ?
             </h3>
@@ -252,8 +252,8 @@ export default function HomeCode() {
               Connecte-toi et commence à aider — ou te faire aider — en un clic.
             </p>
           </div>
-          <div className="w-px bg-black mx-4 self-stretch hidden md:block"></div>
-          <div className="w-full md:w-1/2">
+          <div className="w-px bg-black hidden mx-4 self-stretch  md:block"></div>
+          <div className="w-full md:w-1/2 dark:text-gray-950 ">
             <div className="flex flex-col text-center " >
               <p>Je sais que vous n&apos;avez pas de compte voici de quoi vous connecter.</p>
               <p>email : testUser20@gmail.com</p>
