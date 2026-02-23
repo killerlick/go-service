@@ -63,7 +63,7 @@ export default async function MainFeed(
 
 
   return (
-    <div className="flex-grow m-3">
+    <div className="flex-grow m-3 ">
       <div className="flex flex-col items-center m-3">
         <h1 className="text-xl font-semibold mb-1">
           Services près de chez vous

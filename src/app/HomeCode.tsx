@@ -202,7 +202,7 @@ export default function HomeCode() {
                 <h3 className="text-xl font-semibold mb-4">
                   Prestataires vérifiés
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600  dark:text-gray-400">
                   Chaque prestataire est examiné afin de garantir fiabilité et professionnalisme.
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function HomeCode() {
                 <h3 className="text-xl font-semibold mb-4">
                   Paiement sécurisé
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Transactions protégées et processus transparent pour votre tranquillité.
                 </p>
               </div>
@@ -223,7 +223,7 @@ export default function HomeCode() {
                 <h3 className="text-xl font-semibold mb-4">
                   Support réactif
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Une équipe disponible pour vous accompagner à chaque étape.
                 </p>
               </div>
@@ -233,7 +233,7 @@ export default function HomeCode() {
                 <h3 className="text-xl font-semibold mb-4">
                   Avis authentiques
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600  dark:text-gray-400">
                   Consultez les retours réels des clients avant de faire votre choix.
                 </p>
               </div>
